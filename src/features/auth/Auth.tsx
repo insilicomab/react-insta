@@ -24,6 +24,7 @@ import {
   fetchAsyncGetProfs,
   fetchAsyncCreateProf,
 } from "./authSlice";
+import { fetchAsyncGetPosts, fetchAsyncGetComments } from "../post/postSlice";
 
 /* Modalのスタイル */
 const customStyles = {
@@ -71,8 +72,8 @@ const Auth: FC = () => {
               await dispatch(fetchAsyncCreateProf({ nickName: "anonymous" }));
 
               await dispatch(fetchAsyncGetProfs());
-              //await dispatch(fetchAsyncGetPosts());
-              //await dispatch(fetchAsyncGetComments());
+              await dispatch(fetchAsyncGetPosts());
+              await dispatch(fetchAsyncGetComments());
               await dispatch(fetchAsyncGetMyProf());
             }
             await dispatch(fetchCredEnd());
@@ -172,8 +173,8 @@ const Auth: FC = () => {
             const result = await dispatch(fetchAsyncLogin(values));
             if (fetchAsyncLogin.fulfilled.match(result)) {
               await dispatch(fetchAsyncGetProfs());
-              //await dispatch(fetchAsyncGetPosts());
-              //await dispatch(fetchAsyncGetComments());
+              await dispatch(fetchAsyncGetPosts());
+              await dispatch(fetchAsyncGetComments());
               await dispatch(fetchAsyncGetMyProf());
             }
             await dispatch(fetchCredEnd());
